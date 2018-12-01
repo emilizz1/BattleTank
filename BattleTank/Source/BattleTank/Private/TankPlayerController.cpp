@@ -1,8 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "TankPlayerController.h"
 #include "Engine/World.h"
 #include "Engine/Classes/GameFramework/PlayerController.h"
-#include "TankPlayerController.h"
+
 
 void ATankPlayerController::BeginPlay()
 {
@@ -21,7 +22,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 	FVector HitLocation;
 	if (GetSightRayHitLocation(HitLocation))
 	{
-
+		GetControlledTank()->AimAt(HitLocation);
 	}
 }
 
@@ -47,7 +48,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 bool ATankPlayerController::GetLookVectorHitLocation(FVector lookDirection, FVector& HitLocation) const
 {
 	FHitResult HitResult;
-	auto StartLocation = PlayerCameraManager->GetCameraLocation;
+	auto StartLocation = PlayerCameraManager->GetCameraLocation();
 	auto EndLocation = StartLocation + (lookDirection* LineTraceRange);
 	if (GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECollisionChannel::ECC_Visibility))
 	{

@@ -19,5 +19,5 @@ public:
 
 private:
 	ATank* GetPlayerTank() const;
-	ATank * GetControlRotation();
+	ATank * GetControlledTank();
 };

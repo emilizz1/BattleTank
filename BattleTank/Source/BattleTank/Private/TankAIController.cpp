@@ -3,11 +3,13 @@
 #include "TankAIController.h"
 #include "Tank.h"
 #include "Engine/World.h"
+#include "Engine.h"
 #include "Engine/Classes/GameFramework/PlayerController.h"
 
 
 void ATankAIController::BeginPlay()
 {
+	Super::BeginPlay();
 
 }
 
@@ -17,12 +19,12 @@ void ATankAIController::Tick(float DeltaTime)
 	if (GetPlayerTank())
 	{
 		//TODO move towards the player
-		GetControlRotation()->AimAt(GetPlayerTank()->GetActorLocation());
+		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
 		//TODO fire if ready
 	}
 }
 
-ATank* ATankAIController::GetControlRotation()
+ATank* ATankAIController::GetControlledTank()
 {
 	return Cast<ATank>(GetPawn());
 }

@@ -20,13 +20,13 @@ public:
 private:
 	ATank* GetControlledTank() const;
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
-	bool GetLookVectorHitLocation(FVector lookDirection, FVector & HitLocation) const;
+	bool GetLookVectorHitLocation(FVector LookDirection, FVector & HitLocation) const;
 	bool GetLookDirection(FVector2D ScreenLocation, FVector & LookDirection) const;
 	void AimTowardsCrosshair();
 	UPROPERTY(EditAnywhere)
-	float CrossHairXLocation = 0.5f;
+	float CrosshairXLocation = 0.5;
 	UPROPERTY(EditAnywhere)
-	float CrossHairYLocation = 0.33333f;
+	float CrosshairYLocation = 0.3333;
 	UPROPERTY(EditAnywhere)
 	float LineTraceRange = 1000000;
 };

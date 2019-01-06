@@ -46,7 +46,7 @@ private:
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 	UPROPERTY(EditAnywhere, Category = Firing)
 	float ReloadTimeInSeconds = 3;
-	double LastTimeFired = 0;
+	double LastFireTime = 0;
 	bool IsBarrelMoving();
 	FVector AimDirection;
 };

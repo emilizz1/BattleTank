@@ -92,6 +92,7 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 
 void UTankAimingComponent::Fire()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Trying to fire"));
 	if (FiringState != EFiringState::Reloading)
 	{
 		// Spawn a projectile at the socket location on the barrel

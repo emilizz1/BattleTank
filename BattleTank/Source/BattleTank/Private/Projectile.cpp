@@ -2,6 +2,9 @@
 
 #include "Projectile.h"
 #include "Components/StaticMeshComponent.h"
+#include "Runtime/Engine/Public/TimerManager.h"
+#include "Engine/Classes/Kismet/GameplayStatics.h"
+#include "Engine/Classes/GameFramework/DamageType.h"
 #include "BattleTank.h"
 
 // Sets default values
@@ -47,4 +50,14 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	LaunchBlast->Deactivate();
 	ImpactBlast->Activate();
 	ExplosionForce->FireImpulse();
+	SetRootComponent(ImpactBlast);
+	CollisionMesh->DestroyComponent();
+	UGameplayStatics::ApplyRadialDamage(this, ProjectileDamage, GetActorLocation(), ExplosionForce->Radius, UDamageType::StaticClass(), TArray<AActor*>());
+	FTimerHandle Timer;
+	GetWorld()->GetTimerManager().SetTimer(Timer,this, &AProjectile::OnTimerExpire, DestroyDelay, false);
+}
+
+void AProjectile::OnTimerExpire()
+{
+	Destroy();
 }
